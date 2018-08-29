@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var port = 3000;
 var app = express();
+//var cors = require('cors');
 
 //Configuración de archivos
 app.use(express.static(__dirname + '/public'));//en la carpeta public guardo los archivos estáticos
@@ -23,6 +24,22 @@ app.use(session({
     resave:true,
     saveUninitialized:true
 }));
+
+//CORS
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
+  next();
+});
+
+app.get('/', function(req, res, next) {
+  // Handle the get for this route
+});
+
+app.post('/', function(req, res, next) {
+ // Handle the post for this route
+});
 
 
 module.exports = app;//exportación del archivo app.js
