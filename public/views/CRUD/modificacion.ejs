@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <script src="../js/lib/jquery-3.3.1.min.js"></script>
+    <script src="../js/lib/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js " /></script>
+
+   
+    <link rel="stylesheet" href="../js/lib/jquery-ui-1.12.1/jquery-ui.min.css">
+    <link rel="stylesheet" href="../js/lib/jquery-ui-1.12.1/jquery-ui.structure.min.css">
+    <link rel="stylesheet" href="../js/lib/jquery-ui-1.12.1/jquery-ui.theme.min.css">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/theme-default.min.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    
+            <a class="navbar-brand" href="#"><img id="logo-crud" src="../img/logo-gris.png" alt="logo"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                
+                <ul class="navbar-nav float-right">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/CRUD">Usuarias <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Rutas</a>
+                </li>
+                </ul>
+                
+            </div>
+            
+        </nav>
+        <div class="container mt-5 fondo-modificacion">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="page-header">
+                            <h2>Modificación datos usuaria</h2>
+                        </div>
+                      
+                        <form id="formularioModificacion" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label  class="font-weight-bold" for="name">Nombre</label>
+                                    <!--<input id="nombre" type="text" class="form-control" data-validation="required alphanumeric" value="<%= detalle[0].nombre%>"
+                                    name="name">-->
+                                    <p class="form-control-static"><%= detalle[0].nombre%></p>
+                                    
+                                </div>
+                               <div class="form-group">
+                                    <label  class="font-weight-bold" for="phone">Apellidos</label>
+                                    <!--<input id="apellidos" type="text" class="form-control" data-validation="required alphanumeric" value="<%= detalle[0].apellidos%>"
+                                    name="phone">-->
+                                    <p class="form-control-static"><%= detalle[0].apellidos%></p>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-weight-bold" for="date">Fecha de nacimiento</label>
+                                   <!-- <input id="fecha" type="date" class="form-control" data-validation="required date" value="<%= detalle[0].fechanacimiento%>"
+                                    data-validation-format="dd/mm/yyyy" name="date">-->
+                                    <p class="form-control-static"><%= detalle[0].fechanacimiento%></p>
+                                </div>
+                                <div class="form-group">
+                                    <label  class="font-weight-bold" for="comment">Intereses</label>
+                                    <textarea name="interest" class="form-control" rows="5" id="intereses"><%= detalle[0].intereses%></textarea>
+                                  </div>
+                                <div class="form-group">
+                                    <label class="font-weight-bold" for="email">Email</label>
+                                    <input id="email" type="text" class="form-control" data-validation="required email" value="<%= detalle[0].email%>"
+                                    name="email">
+                                </div>
+                               <!-- <div class="form-group">
+                                    <label for="exampleInputPassword1">Password</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1" data-validation="required alphanumeric"  placeholder="Password">
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="exampleInputPassword1">Repetir Password</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1" data-validation="required alphanumeric" placeholder="Password">
+                                  </div>-->
+                                
+                                
+                                <div class="form-group">
+                                    <button id="<%= detalle[0].id%>" class="btn btn-primary btn-lg boton-modificar" type="button">Modificar</button>
+                                </div>
+                                
+                            </form>
+                    </div>
+                    <div class="col-md-4">
+                            <div class="form-group">
+                                <img class="foto-user" src="<%= detalle[0].foto%>">
+                                
+                            </div>
+                        </div>
+                </div>        
+        </div>
+
+    
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="../../css/bootstrap.min.css">
+        <link rel="stylesheet" href="../../css/style.css">
+        <script src="../js/lib/jquery-3.3.1.min.js"></script>
+        <script src="../js/lib/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+        <script src="../js/main.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js " /></script>
+       
+        <link rel="stylesheet" href="../js/lib/jquery-ui-1.12.1/jquery-ui.min.css">
+        <link rel="stylesheet" href="../js/lib/jquery-ui-1.12.1/jquery-ui.structure.min.css">
+        <link rel="stylesheet" href="../js/lib/jquery-ui-1.12.1/jquery-ui.theme.min.css">
+        <link href="http://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/theme-default.min.css" rel="stylesheet" type="text/css"/> 
+
+        <script type="text/javascript">
+            function convertDate(inputFormat) {
+            function pad(s) { return (s < 10) ? '0' + s : s; }
+            var d = new Date(inputFormat);
+            return [pad(d.getDate()), pad(d.getMonth()+1), d.getFullYear()].join('/');
+
+            
+            var fecha = convertDate('<%= detalle[0].fechanacimiento%>');
+}
+        </script>
+</head>
+
+<body>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        
+                <a class="navbar-brand" href="#"><img id="logo-crud" src="../img/logo-gris.png" alt="logo"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+        
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    
+                  <ul class="navbar-nav float-right">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="/CRUD">Usuarias <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Rutas</a>
+                    </li>
+                  </ul>
+                 
+                </div>
+                
+            </nav>
+            <div class="container mt-5">
+                    <div class="row fondo-detalle">
+                        <div class="col-md-8">
+                            <div class="page-header">
+                                <h1>Detalle de usuaria</h1>
+                            </div>
+                            <div class="form-group">
+                                <label class="font-weight-bold">Nombre</label>
+                                <p class="form-control-static"><%= detalle[0].nombre%></p>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="font-weight-bold">Apellidos</label>
+                                <p class="form-control-static"><%= detalle[0].apellidos%></p>
+                            </div>
+                            <div class="form-group">
+                                <label class="font-weight-bold">Fecha de nacimiento</label>
+                                <p class="form-control-static"><%= detalle[0].fechanacimiento%></p>
+                            </div>
+                            
+                            
+                            <div class="form-group">
+                                <label class="font-weight-bold">Email</label>
+                                <p class="form-control-static"><%= detalle[0].email%></p>
+                            </div>
+                            
+                            <!--<img src="../img/uploads/img2.jpg">-->
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <img class="foto-user" src="<%= detalle[0].foto%>">
+                                <div class="form-group">
+                                    <label class="font-weight-bold">Intereses</label>
+                                    <p class="form-control-static"><%= detalle[0].intereses%></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <p><a href="/CRUD" class="btn btn-primary volver">Volver</a></p>
+                            </div>
+                        </div>
+                    </div>        
+                </div>
+    
+</body>
+</html>

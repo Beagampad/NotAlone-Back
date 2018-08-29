@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="../../css/bootstrap.min.css">
+        <link rel="stylesheet" href="../../css/style.css">
+        <script src="../js/lib/jquery-3.3.1.min.js"></script>
+        <script src="../js/lib/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+        <script src="../js/main.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js " /></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAorDvL2UTCJNA_mqwBM0j8ZHkcFl-PWW8"></script>
+       
+        <link rel="stylesheet" href="../js/lib/jquery-ui-1.12.1/jquery-ui.min.css">
+        <link rel="stylesheet" href="../js/lib/jquery-ui-1.12.1/jquery-ui.structure.min.css">
+        <link rel="stylesheet" href="../js/lib/jquery-ui-1.12.1/jquery-ui.theme.min.css">
+    
+       <link href="http://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/theme-default.min.css" rel="stylesheet" type="text/css"/>
+</head>
+<script>
+    
+</script>
+<body>
+    <div class="container">
+        <h1>Enviar invitaciones</h1>
+
+        <form id="frominvitation" enctype="multipart/form-data">
+            <div class="form-group">
+            <label for="exampleInputEmail1">Escribe el mail de tu invitada</label>
+            <input type="email" name="passinvitada" class="form-control" id="Email1" aria-describedby="emailHelp" placeholder=" invitada@email.com">
+            </div>
+            <div class="form-group">
+            <label for="exampleInputPassword1">Comentarios</label>
+            <textarea class="form-control" rows="5" id="intereses" name="interest"></textarea>
+            </div>
+            <button id="btninvitation" type="button" class="btn btn-primary">Enviar</button>
+        </form>
+
+        <h1>Publica un trayecto</h1>
+        <form id="formruta" enctype="multipart/form-data">
+            <div class="form-group">
+                <label>Punto de partida</label>
+                <input type="text" name="origen" class="form-control" id="origen">
+            </div>
+            <div class="form-group">
+                <label>Destino</label>
+                <input type="text" name="destino" class="form-control" id="destino">
+            </div>
+            <div class="form-group">
+                <label>Hora Aproximada</label>
+                <input type="datetime" name="hora" class="form-control" id="hora">
+            </div>
+            <div class="form-group">
+                <label>Medio de transporte</label>
+                <select name="medio" class="form-control" id="medio">
+                  <option value="Andando">Andando</option>
+                  <option value="Coche">Coche</option>
+                  <option>Moto</option>
+                  <option>Bus</option>
+                  <option>Taxi</option>
+                  <option>Metro</option>
+                </select>
+            </div>
+            <div class="form-group">
+            <label>Comentarios</label>
+            <textarea class="form-control" rows="5" id="intereses" name="comentarios"></textarea>
+            </div>
+            <button id="btnruta" type="button" class="btn btn-primary">Publicar</button>
+        </form>
+        <h1>Obtener Coordenadas a partir de una dirección</h1>
+        <!--<div id="mapa" style="width: 450px; height: 350px;"> </div>-->
+        <div><p id="coordenadas"></p></div>
+        <div class="form-group">
+            <label>Ciudad</label>
+            <input type="text" name="ciudad" class="form-control" id="ciudad">
+        </div>
+        <button id="search" type="button" class="btn btn-primary">Coord</button>
+        <!--<input type="text" id="search"> <input type="button" value="Buscar Dirección" onClick="mapa.getCoords()">-->
+    </div>
+</body>
+</html>
