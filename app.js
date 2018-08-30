@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var port = 3000;
 var app = express();
-//var cors = require('cors');
+
 
 //Configuración de archivos
 app.use(express.static(__dirname + '/public'));//en la carpeta public guardo los archivos estáticos
@@ -17,6 +17,7 @@ app.use(bodyParser.json());
 app.listen(port, () =>{
     console.log('Servidor corriendo correctamente');
   });
+  
 //Módulo de sesión
 var session = require('express-session');
 app.use(session({

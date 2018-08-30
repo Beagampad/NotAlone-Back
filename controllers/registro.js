@@ -3,6 +3,7 @@ var fs = require('fs');
 var bcrypt = require('bcrypt-nodejs');
 var nodemailer = require('nodemailer');
 var UtilityController = require('../controllers/utilities');
+var jwt = require('jsonwebtoken');
 
 
 var controller = {
@@ -29,6 +30,7 @@ var controller = {
         var res = url_string.split("=");//captura de token de la url
         var tk = res[1];//Guarda el token de la url*/
 
+        
         var existetoken = UtilityController.checktoken(tk);
 
         console.log(existetoken);
@@ -53,6 +55,8 @@ var controller = {
                             nombreusuaria: req.body.nombreusuaria,
                             password1 : req.body.password1
                         }
+
+    
                         return res.send(usuario);
                 }
           });
@@ -86,15 +90,23 @@ var controller = {
                         
                     } else {
                         if (iguales) {
-                            
+
                             req.session.user = {//Guarda en sesión los datos del usuario
                                 'id': result[0].id,
                                 'user': result[0].nombre,
                                 'email': result[0].email
                               }
                             console.log("son iguales")
-                            return res.send(result);
+                            // TOKEN JWT
+                            var token = jwt.sign({ id: req.session.user.id }, 'secretpass', {
+                                expiresIn: 86400 // expires in 24 hours
+                              });
                             
+                            return res
+                            
+                            .status(200)
+                            .send({ result: result, auth: true, token: token} );
+
                         } else {
                             console.log('la contraseña no es correcta')
                             return res.send('La contraseña no es correcta');
@@ -162,6 +174,7 @@ var controller = {
             req.session.destroy();
         }else{
             console.log("No existe un login de usuario");
+            res.status(200).send({ auth: false, token: null });
             return res.send('No existe un login de usuario')
         }
     }
