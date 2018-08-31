@@ -91,11 +91,11 @@ var controller = {
                     } else {
                         if (iguales) {
 
-                            req.session.user = {//Guarda en sesión los datos del usuario
+                            /*req.session.user = {//Guarda en sesión los datos del usuario
                                 'id': result[0].id,
                                 'user': result[0].nombre,
                                 'email': result[0].email
-                              }
+                              }*/
                             console.log("son iguales")
                             // TOKEN JWT
                             var token = jwt.sign({ id: req.session.user.id }, 'secretpass', {

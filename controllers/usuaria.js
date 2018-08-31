@@ -49,6 +49,7 @@ var controller = {
 },
     consultUserbyID: function(req,res){
 
+        
         let sql = `SELECT * from usuaria WHERE id = ${req.query.id}`;
         con.query(sql, function (err, result) {
         if (err) {
