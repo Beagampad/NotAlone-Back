@@ -68,6 +68,7 @@ var controller = {
     })
   },
   loginUser: function (req, res) {//Login de usuaria
+    console.log(req.body.email)
     let sql = `SELECT * from usuaria where email ='${req.body.email}'`;
     con.query(sql, function (err, result) {
         if (err) {

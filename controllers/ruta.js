@@ -13,7 +13,7 @@ var controller = {
 
         console.log(req.body.origen)
         
-        let sql = `INSERT INTO ruta (idusuaria,origen,destino,fecha,hora,coordenadas,medio,comentarios) VALUES ('${"48"}','${req.body.origen}','${req.body.destino}','${req.body.fecha}','${req.body.hora}','${"en espera"}','${req.body.medio}','${req.body.comentarios}')`;
+        let sql = `INSERT INTO ruta (idusuaria,origen,destino,fecha,hora,coordenadas,medio,comentarios) VALUES ("48",'${req.body.origen}','${req.body.destino}','${req.body.fecha}','${req.body.hora}','${"en espera"}','${req.body.medio}','${req.body.comentarios}')`;
         console.log(sql);
         con.query(sql, function (err, result) {
             if (err) {
