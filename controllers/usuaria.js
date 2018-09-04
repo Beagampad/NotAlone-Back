@@ -84,8 +84,11 @@ var controller = {
     },
     modUsuaria: function(req,res){
 
+        console.log(req.body.email)
+        console.log(req.body.id)
+
         let sql = `UPDATE usuaria SET intereses='${req.body.interest}',email='${req.body.email}' where id = '${req.body.id}'`;
-        //console.log(req.body)
+        
         con.query(sql, function (err, result) {
         if (err) {
             console.log(err);

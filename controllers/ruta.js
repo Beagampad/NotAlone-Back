@@ -81,8 +81,6 @@ consultRutabyID: function(req,res){
         .catch((err) => {
           return err;
         });
-        //console.log(coord)
-        //return coord
      }
 
 
