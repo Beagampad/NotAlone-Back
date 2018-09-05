@@ -79,10 +79,10 @@ var controller = {
        
         },
         // función que se ejecuta al pulsar el botón buscar dirección
-        getCoords : function(ciudad,idusuaria){
-            console.log(idusuaria)
-            let coord = {}
-            console.log(ciudad)
+        getCoordsOrig : function(ciudad,idusuaria){
+            console.log(idusuaria);
+            let coord = {};
+            console.log(ciudad);
             let address1 = ciudad;
 
             // Geocode an address.
@@ -113,7 +113,43 @@ var controller = {
             console.log(coord);
             return coord;
 
+         },
+         getCoordsDest : function(ciudad,idusuaria){
+            console.log(idusuaria);
+            let coord = {};
+            console.log(ciudad);
+            let address1 = ciudad;
+
+            // Geocode an address.
+            googleMapsClient.geocode({
+                address: address1
+            }, function(err, response) {
+                if (!err) {
+                    coord = response.json.results[0].geometry.location;
+                    console.log(coord);
+                     let sql = `UPDATE ruta SET coordenadas2='${coord.lat}, ${coord.lng}'where idruta = '${idusuaria}'`;
+
+                    console.log(sql)
+                    con.query(sql, function (err, result) {
+                    if (err) {
+                        console.log(err);
+                    return err;
+                    }
+                    else {
+                        let ruta = {
+                            coordenadas: coord
+                        }
+                    return ruta;
+                    }
+                    })
+   
+                }
+            });
+            console.log(coord);
+            return coord;
+
          }
+        
          
 
        

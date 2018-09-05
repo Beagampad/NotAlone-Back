@@ -95,8 +95,11 @@ app.get('/notalone/rutas', RutasController.consultRuta);
 //ConsultarRuta por ID
 app.get('/notalone/rutadetalle', RutasController.consultRutabyID);
 
-//Coord Ruta
-app.post('/notalone/coord', UtilityController.getCoords);
+//Coord Ruta Origen
+app.post('/notalone/coord', UtilityController.getCoordsOrig);
+
+//Coord Ruta Destino
+app.post('/notalone/coord2', UtilityController.getCoordsOrig);
 
 
 

@@ -13,7 +13,7 @@ var controller = {
 
         console.log(req.body.origen)
         
-        let sql = `INSERT INTO ruta (idusuaria,origen,destino,fecha,hora,coordenadas,medio,comentarios) VALUES ("48",'${req.body.origen}','${req.body.destino}','${req.body.fecha}','${req.body.hora}','${"en espera"}','${req.body.medio}','${req.body.comentarios}')`;
+        let sql = `INSERT INTO ruta (idusuaria,origen,destino,fecha,hora,coordenadas,coordenadas2,medio,comentarios) VALUES ("48",'${req.body.origen}','${req.body.destino}','${req.body.fecha}','${req.body.hora}','en espera','en espera','${req.body.medio}','${req.body.comentarios}')`;
         console.log(sql);
         con.query(sql, function (err, result) {
             if (err) {
@@ -22,7 +22,8 @@ var controller = {
             }
             else {
 
-                let coordenadas = UtilityController.getCoords(req.body.origen,result.insertId);//llamada a función de coordenadas
+                let coordenadas = UtilityController.getCoordsOrig(req.body.origen,result.insertId);//llamada a función de coordenadas
+                let coordenadas2 = UtilityController.getCoordsDest(req.body.destino,result.insertId);//llamada a función de coordenadas
 
                 let ruta = {
                     id: result.insertId,
@@ -32,13 +33,13 @@ var controller = {
                     fecha: req.body.fecha,
                     hora: req.body.hora,
                     coordenadas: coordenadas,
+                    coordenadas2: coordenadas2,
                     medio: req.body.medio,
                     comentarios: req.body.comentarios
                 }
                return res.send(ruta);
             }
         });
-
     },
     consultRuta: function(req,res){
 
