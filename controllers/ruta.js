@@ -22,8 +22,8 @@ var controller = {
             }
             else {
 
-                let coordenadas = UtilityController.getCoordsOrig(req.body.origen,result.insertId);//llamada a función de coordenadas
-                let coordenadas2 = UtilityController.getCoordsDest(req.body.destino,result.insertId);//llamada a función de coordenadas
+                let coordenadas = UtilityController.getCoordsOrig(req.body.origen,result.insertId);//llamada a función de coordenadas origen
+                let coordenadas2 = UtilityController.getCoordsDest(req.body.destino,result.insertId);//llamada a función de coordenadas destino
 
                 let ruta = {
                     id: result.insertId,

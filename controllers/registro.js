@@ -118,6 +118,34 @@ var controller = {
             };
         };
     });
+},  sendmail: function (req, res){
+    console.log(req.body.nombreusuaria);
+
+    let invitation = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+          port: 465,
+          secure: true,// use SSL
+          auth: {
+            user: 'beattiegmz84@gmail.com',
+            pass: 'underground84'
+        }
+      });
+      
+      var mailOptions = {
+        from: req.body.emaillog,
+        to: req.body.email,
+        subject: 'Genial! Una usuaria se ha unido a tu ruta',
+        text: 'La usuaria de NotAlone '+req.body.nombre+' quiere compartir el camino contigo su nº es '+req.body.tfn
+      };
+      
+      invitation.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+
 },
     sendinvitation:function (req, res){//Envío de invitaciones por correo
 

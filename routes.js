@@ -101,6 +101,9 @@ app.post('/notalone/coord', UtilityController.getCoordsOrig);
 //Coord Ruta Destino
 app.post('/notalone/coord2', UtilityController.getCoordsOrig);
 
+//Unirme a Ruta
+app.post('/notalone/joinme', UsersController.sendmail);
+
 
 
 
