@@ -135,7 +135,7 @@ var controller = {
         from: req.body.emaillog,
         to: req.body.email,
         subject: 'Genial! Una usuaria se ha unido a tu ruta',
-        text: 'La usuaria de NotAlone '+req.body.nombre+' quiere compartir el camino contigo su nº es '+req.body.tfn
+        text: 'La usuaria de NotAlone '+req.body.nombre+' quiere compartir el camino contigo. Ya puedes ponerte en contacto con ella para concretar un lugar y hora, su nº de teléfono es '+req.body.tfn , 
       };
       
       invitation.sendMail(mailOptions, function(error, info){
@@ -145,17 +145,39 @@ var controller = {
           console.log('Email sent: ' + info.response);
         }
       });
-
 },
+    numinvitation:function (req, res){// Consulta nº de invitaciones
+
+        console.log(req.query.id);
+
+        let sql = `SELECT * from usuaria WHERE id = ${req.query.id}`;
+
+        con.query(sql, function (err, result) {
+            if (err) {
+                console.log(err);
+                return res.send(err);
+            }
+            else {
+                console.log(result);
+                return  res.send(result);
+            }
+      });
+    },
+
     sendinvitation:function (req, res){//Envío de invitaciones por correo
 
-        let usuaria = req.session.user;
-        var current_hour = UtilityController.currentDate();
-        var token = UtilityController.ramdomtoken();
+        console.log(req.body.idusuaria);
+        console.log(req.body.email);
+
+        let idusuaria = req.body.idusuaria;
+        let numinvitaciones = (req.body.invitaciones)-1;
+        console.log(req.body.invitaciones);
+        let current_hour = UtilityController.currentDate();
+        let token = UtilityController.ramdomtoken();
 
         console.log(token);
         //Inserta en BBDD las invitaciones enviadas con un token
-        let sql = `INSERT INTO invitacion (idusuaria,invitado1,fecha,token) VALUES ('${usuaria.id}','${req.body.passinvitada}','${current_hour}','${token}')`;
+        let sql = `INSERT INTO invitacion (idusuaria,invitado1,fecha,token) VALUES ('${idusuaria}','${req.body.email}','${current_hour}','${token}')`;
 
         let encryp_token = token*5;//Encriptación de token
         encryp_token = encryp_token +1200;
@@ -168,20 +190,22 @@ var controller = {
                 return res.send(err);
             }
             else {
+
+
                 let invitation = nodemailer.createTransport({
                     host: 'smtp.gmail.com',
                       port: 465,
                       secure: true,// use SSL
                       auth: {
                         user: 'beattiegmz84@gmail.com',
-                        pass: 'underground84'
+                        pass: 'rob220917'
                     }
                   });
                   
                   var mailOptions = {
-                    from: usuaria.email,
-                    to: req.body.passinvitada,
-                    subject: 'Sending Email using Node.js',
+                    from: "NotAlone",
+                    to: req.body.email,
+                    subject: 'Invitación de registro en NotAlone',
                     text: url
                   };
                   
@@ -192,10 +216,27 @@ var controller = {
                       console.log('Email sent: ' + info.response);
                     }
                   });
-                }
-               
-        //console.log(req);
 
+                  // Resto una invitación
+
+                let sql2 = `UPDATE usuaria SET numinvitaciones= '${numinvitaciones}' where id = '${req.body.idusuaria}'`;
+
+                con.query(sql2, function (err, result) {
+                    if (err) {
+                        console.log(err);
+                        return res.send(err);
+                    }
+                    else {
+                            console.log("invitaciones");
+                            let usuario = {
+                                numinvitaciones: numinvitaciones,
+                            }
+                            return res.send(usuario);
+                    }
+              });
+
+                }
+        //console.log(req);
         })
     },
     logoutUser: function(req, res){
@@ -207,7 +248,6 @@ var controller = {
             return res.send('No existe un login de usuario')
         }
     }
-    
 }
 
 

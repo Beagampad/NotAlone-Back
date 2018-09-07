@@ -64,6 +64,9 @@ app.post('/notalone/register', multipartMiddleware, UsersController.registerUser
 //Envío de invitaciones
 app.post('/notalone/invitacion', UsersController.sendinvitation);
 
+//Nº de invitaciones
+app.get('/notalone/numinvitacion', UsersController.numinvitation);
+
 //------------------------ CRUD -----------------------------------
 
 //Añadir usuaria por panel administracion
