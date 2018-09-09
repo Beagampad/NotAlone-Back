@@ -9,12 +9,15 @@ var jwt = require('jsonwebtoken');
 var controller = {
     registerUser: function (req, res) {//Registro de usuaria
 
-        //console.log(req.files);
+        console.log(req.body.tfn);
 
-        let oldPath = req.files.foto.path;//Ruta de las imágenes subidas
-        let newPath = './public/img/uploads/' + req.files.foto.originalFilename;
+        //let oldPath = req.files.foto.path;//Ruta de las imágenes subidas
+        let oldPath = req.body.foto;
+         //let newPath = './public/img/uploads/' + req.files.foto.originalFilename;
+        let newPath = './public/img/uploads/' + req.body.nombre;
 
-        let rutabbdd = '/img/uploads/'+ req.files.foto.originalFilename;
+        //let rutabbdd = '/img/uploads/'+ req.files.foto.originalFilename;
+        let rutabbdd = '/img/uploads/'+ req.body.foto;
         fs.rename(oldPath, newPath, function (err) { //Cambio de nombre a la imagen
         });
 
@@ -23,19 +26,7 @@ var controller = {
             bcrypt.hash(password1, salt, null, function (err, hash) {
                 password1 = hash;
 
-        let sql = `INSERT INTO usuaria (nombre,apellidos,fechanacimiento,intereses,foto,email,nombreusuaria,password1) VALUES ('${req.body.name}','${req.body.surname}','${req.body.date}','${req.body.interest}','${rutabbdd}','${req.body.email}','${req.body.nombreusuaria}','${password1}')`;
-        //console.log(req);
-        /*var url_string = req.headers.referer;//Recoge la url actual
-        console.log(url_string);
-        var res = url_string.split("=");//captura de token de la url
-        var tk = res[1];//Guarda el token de la url*/
-
-        
-        var existetoken = UtilityController.checktoken(tk);
-
-        console.log(existetoken);
-
-        //if(existetoken){//Comprueba que existe el token con el método de utilities
+        let sql = `INSERT INTO usuaria (nombre,apellidos,fechanacimiento,tfn,intereses,foto,email,password1, numinvitaciones) VALUES ('${req.body.nombre}','${req.body.apellidos}','${req.body.fechanacimiento}','${req.body.tfn}','${req.body.intereses}','${rutabbdd}','${req.body.email}','${password1}','${5}')`;
 
             con.query(sql, function (err, result) {
                 if (err) {
@@ -43,7 +34,7 @@ var controller = {
                     return res.send(err);
                 }
                 else {
-                        console.log("existe el token");
+                        console.log("registro con éxito");
                         let usuario = {
                             id: result.insertId,
                             nombre: req.body.name,
@@ -61,9 +52,6 @@ var controller = {
                 }
           });
 
-       /* }else{
-            console.log("no existe el token")
-        }*/
         });
     })
   },
@@ -182,7 +170,7 @@ var controller = {
         let encryp_token = token*5;//Encriptación de token
         encryp_token = encryp_token +1200;
 
-        let url = "http://localhost:3000/?tk="+ encryp_token;//URL enviada en el correo para hacer el registro
+        let url = "http://localhost:4200/registro/"+ encryp_token;//URL enviada en el correo para hacer el registro
 
         con.query(sql, function (err, result) {
             if (err) {

@@ -67,6 +67,10 @@ app.post('/notalone/invitacion', UsersController.sendinvitation);
 //Nº de invitaciones
 app.get('/notalone/numinvitacion', UsersController.numinvitation);
 
+//Comprobar Token
+app.get('/notalone/checktoken', UtilityController.checktoken);
+
+
 //------------------------ CRUD -----------------------------------
 
 //Añadir usuaria por panel administracion

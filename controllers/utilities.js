@@ -10,12 +10,12 @@ var googleMapsClient = require('@google/maps').createClient({//Google maps y coo
 var controller = {
 
     currentDate:function() {//Saca la fecha actual
-        var current_hour = moment().format('yyyy-mm-dd');
+        let current_hour = moment().format('yyyy-mm-dd');
         return current_hour;
     },
     ramdomtoken: function(){//Genera un token de forma aleatoria
 
-        var gen = rn.generator({
+        let gen = rn.generator({
             min:  -1000
             , max:  1000
             , integer: true
@@ -23,11 +23,11 @@ var controller = {
         return gen(); // example outputs → -350
 
     },
-    checktoken: function(tk){//Comprobación de token de invitación en BBDD
+    checktoken: function(req, res){//Comprobación de token de invitación en BBDD
 
-        console.log(tk);
+        console.log("checktoken");
 
-        var decryp_token = tk;
+        let decryp_token = req.query.tk;
         decryp_token = decryp_token - 1200;
         decryp_token = (decryp_token)/5;
 
@@ -42,12 +42,13 @@ var controller = {
         con.query(sql, function (err, result) {
             if (err) {
                 console.log(err);
-                return err;
+                return res.send(Tk, err);
             }
             else {
+                console.log("existe el token");
                Tk=true;
                console.log(Tk);
-               return Tk ;
+               return res.send(Tk); ;
             };
             
         });
