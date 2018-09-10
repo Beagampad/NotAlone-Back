@@ -33,7 +33,7 @@ var controller = {
 
         console.log(decryp_token);
 
-        let sql = `SELECT * from invitacion WHERE token = '${decryp_token}'`;
+        let sql = `SELECT count(*) as c from invitacion WHERE token = '${decryp_token}'`;
 
         console.log(sql);
         let Tk = false;
@@ -45,10 +45,19 @@ var controller = {
                 return res.send(Tk, err);
             }
             else {
-                console.log("existe el token");
-               Tk=true;
-               console.log(Tk);
-               return res.send(Tk); ;
+   
+               var text = JSON.stringify(result);
+               var data =  JSON.parse(text);
+
+               var contador = data[0].c;
+
+                if(contador>0){
+                    Tk=true;
+                    console.log(Tk);
+                    return res.send(Tk); 
+                }else{
+                    return res.send(Tk); 
+                }
             };
             
         });

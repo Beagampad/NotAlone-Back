@@ -6,18 +6,22 @@ var UtilityController = require('../controllers/utilities');
 var jwt = require('jsonwebtoken');
 
 
+
 var controller = {
     registerUser: function (req, res) {//Registro de usuaria
+        
+        console.log(req);
 
-        console.log(req.body.tfn);
+        let oldPath = req.files.foto.path;//Ruta de las imágenes subidas
+        //let oldPath = req.body.foto;
 
-        //let oldPath = req.files.foto.path;//Ruta de las imágenes subidas
-        let oldPath = req.body.foto;
-         //let newPath = './public/img/uploads/' + req.files.foto.originalFilename;
-        let newPath = './public/img/uploads/' + req.body.nombre;
+        //var res = oldPath.split(" \ ")[0];
+        //console.log(res);
+        let newPath = './public/img/uploads/' + req.files.foto.originalFilename;
+        //let newPath = './public/img/uploads/' + req.body.nombre;
 
-        //let rutabbdd = '/img/uploads/'+ req.files.foto.originalFilename;
-        let rutabbdd = '/img/uploads/'+ req.body.foto;
+        let rutabbdd = '/img/uploads/'+ req.files.foto.originalFilename;
+        //let rutabbdd = '/img/uploads/'+ req.body.foto;
         fs.rename(oldPath, newPath, function (err) { //Cambio de nombre a la imagen
         });
 

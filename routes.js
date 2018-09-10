@@ -5,6 +5,39 @@ var RutasController = require('./controllers/ruta');//Controlador ruta
 var UtilityController = require('./controllers/utilities')
 var multipart = require('connect-multiparty');
 var multipartMiddleware = multipart({uploadDir: './public/img/uploads'})
+//var multer = require('multer');
+
+/*var DIR = './public/img/uploads';
+ 
+var upload = multer({dest: DIR});
+
+
+app.use(multer({
+    dest: DIR,
+    rename: function (fieldname, filename) {
+      return filename + Date.now();
+    },
+    onFileUploadStart: function (file) {
+      console.log(file.originalname + ' is starting ...');
+    },
+    onFileUploadComplete: function (file) {
+      console.log(file.fieldname + ' uploaded to  ' + file.path);
+    }
+  }));
+   
+  app.get('/api', function (req, res) {
+    res.end('file catcher example');
+  });
+   
+  app.post('/api', function (req, res) {
+    upload(req, res, function (err) {
+      if (err) {
+        return res.end(err.toString());
+      }
+   
+      res.end('File is uploaded');
+    });
+  });*/
 
 
 // middleware que comprueba que hay sesión
