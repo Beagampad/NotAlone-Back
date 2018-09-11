@@ -10,7 +10,9 @@ var jwt = require('jsonwebtoken');
 var controller = {
     registerUser: function (req, res) {//Registro de usuaria
         
-        console.log(req);
+        //console.log(req);
+   console.log(req);
+   //console.log(req.files);
 
         let oldPath = req.files.foto.path;//Ruta de las imágenes subidas
         //let oldPath = req.body.foto;
